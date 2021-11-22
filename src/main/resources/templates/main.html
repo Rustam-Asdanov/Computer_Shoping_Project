@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link th:rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<section id="box-one">
+    <div>
+        <span>
+          <h2>Добро пожаловать в наш сайт для покупки компьютеров</h2>
+          <h3>Пользователь:</h3>
+          <hr />
+        </span>
+
+        <div onclick="">
+            <img src="@{/img/shopping.png}" alt="shopping" />
+            <p>Покупка и продажа компьютеров</p>
+        </div>
+
+        <div onclick="">
+            <img src="@{/img/login.png}" alt="login" />
+            <p>Вход</p>
+        </div>
+
+        <div onclick="">
+            <img th:src="@{/img/homepage.png}" alt="homepage" />
+            <p>Главная страница</p>
+        </div>
+    </div>
+</section>
+</body>
+</html>
