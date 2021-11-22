@@ -13,22 +13,22 @@
 <body>
 <div class="container">
     <form class="form-signin" method="post" action="/login">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Войти в свой аккаунт</h2>
         <p>
-            <label for="username">Username</label>
+            <label for="username">Логин</label>
             <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
         </p>
         <p>
-            <label for="password">Password</label>
+            <label for="password">Пароль</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         </p>
 <!--        <input name="_csrf" type="hidden" value="e0dc37bf-5443-4913-96d6-ebe589dac67f" />-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
     </form>
 
-    <form class="form-signin" method="post" action="/registration">
+    <form class="form-signin" method="get" action="/registration">
         <!--        <input name="_csrf" type="hidden" value="e0dc37bf-5443-4913-96d6-ebe589dac67f" />-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit">New Account</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Новый пользователь</button>
     </form>
 </div>
 </body></html>
