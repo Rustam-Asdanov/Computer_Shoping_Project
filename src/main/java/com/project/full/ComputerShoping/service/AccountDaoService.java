@@ -18,6 +18,8 @@ public class AccountDaoService {
     }
 
     public Account getAccountByUsername(String username) {
-        return accountRepository.findByUsername(username);
+        Account account = accountRepository.findByUsername(username);
+        return account;
     }
+
 }

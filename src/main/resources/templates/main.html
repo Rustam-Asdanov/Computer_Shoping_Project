@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Компьютерный Магазин Скалетто</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
     <link th:rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
 <section id="box-one">
         <span>
-          <h2>Добро пожаловать в наш сайт для покупки компьютеров</h2>
-          <h3 >Пользователь:</h3>
-            <form method="post" action="/logout">
-                <!--        <input name="_csrf" type="hidden" value="e0dc37bf-5443-4913-96d6-ebe589dac67f" />-->
-                <button type="submit">Выход</button>
-            </form>
+          <h2>Добро пожаловать в компьютерный магазин Скалетто</h2>
+          <h3 th:if="${isActive}" >Пользователь:
+            <small th:text="${account}"></small>
+          </h3>
           <hr />
         </span>
 
@@ -24,7 +25,7 @@
             <p>Главная страница</p>
         </div>
 
-        <div onclick="">
+        <div onclick="" th:if="${isActive}">
             <img th:src="@{/img/computer.png}" alt="homepage" />
             <p>Компьютеры</p>
         </div>
@@ -34,11 +35,20 @@
             <p>Покупка и продажа компьютеров</p>
         </div>
 
-        <div onclick="">
+        <div onclick="" th:unless="${isActive}">
             <img th:src="@{/img/login.png}" alt="login" />
             <p>Вход</p>
         </div>
 
+        <div onclick="" th:if="${isActive}">
+            <img th:src="@{/img/logout.png}" alt="logout" />
+            <p>Выход</p>
+        </div>
+
+        <div onclick="" th:unless="${isActive}">
+            <img th:src="@{/img/registration.png}" alt="registration" />
+            <p>Новый пользователь</p>
+        </div>
 
 </section>
 </body>

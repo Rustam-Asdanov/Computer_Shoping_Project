@@ -9,9 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import static com.project.full.ComputerShoping.security.ApplicationRole.GUEST;
 
@@ -28,14 +25,13 @@ public class AccountUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return selectAccountByUsername(username)
-                .orElseThrow(()->
-                        new BadCredentialsException(String.format("account with username %s is not exists",username)));
+        return selectAccountByUsername(username);
     }
 
-    private Optional<AccountUserDetails> selectAccountByUsername(String username){
-        List<AccountUserDetails> accountList = new ArrayList<>();
+    private AccountUserDetails selectAccountByUsername(String username){
+
         Account account = accountDaoService.getAccountByUsername(username);
+
         AccountUserDetails accountUserDetails = new AccountUserDetails(
                 account.getUsername(),
                 passwordEncoder.encode(account.getPassword()),
@@ -46,9 +42,6 @@ public class AccountUserDetailsService implements UserDetailsService {
                 true
         );
 
-        accountList.add(accountUserDetails);
-        return accountList.stream()
-                .filter(acc -> username.equals(acc.getUsername()))
-                .findFirst();
+        return accountUserDetails;
     }
 }

@@ -33,6 +33,7 @@ class MainController {
     @PostMapping("/create_account")
     public String createAccount(@ModelAttribute("new_user") Account account){
         accountDaoService.createNewAccount(account);
+        System.out.println("saved");
         return "redirect:/login";
     }
 
