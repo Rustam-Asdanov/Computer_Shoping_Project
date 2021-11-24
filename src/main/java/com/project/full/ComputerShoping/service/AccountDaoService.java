@@ -16,4 +16,8 @@ public class AccountDaoService {
     public void createNewAccount(Account account) {
         accountRepository.save(account);
     }
+
+    public Account getAccountByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
 }
