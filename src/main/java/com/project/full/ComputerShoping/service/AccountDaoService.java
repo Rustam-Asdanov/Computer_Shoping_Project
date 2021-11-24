@@ -1,0 +1,14 @@
+package com.project.full.ComputerShoping.service;
+
+import com.project.full.ComputerShoping.repository.AccountRepository;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AccountDaoService {
+
+    private final AccountRepository accountRepository;
+
+    public AccountDaoService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+}
