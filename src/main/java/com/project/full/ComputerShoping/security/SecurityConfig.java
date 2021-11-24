@@ -38,15 +38,4 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/computer_shopping");
     }
 
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        UserDetails user_one = User.builder()
-                .username("user")
-                .password(passwordEncoder.encode("111"))
-                .roles()
-                .build();
-
-        return new InMemoryUserDetailsManager(user_one);
-    }
 }
