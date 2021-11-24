@@ -6,7 +6,6 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@AllArgsConstructor
 @Entity
 @Table
 public class Account {
@@ -21,5 +20,13 @@ public class Account {
     private String phone_number;
 
     public Account() {
+    }
+
+    public Account(String username, String password, String full_name, String email, String phone_number) {
+        this.username = username;
+        this.password = password;
+        this.full_name = full_name;
+        this.email = email;
+        this.phone_number = phone_number;
     }
 }
