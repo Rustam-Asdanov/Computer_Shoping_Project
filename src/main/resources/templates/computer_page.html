@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link th:href="@{/css/comp_style.css}" rel="stylesheet">
+</head>
+<body>
+<section id="container">
+    <nav>
+        <div class="home" onclick="window.open('/computer_shopping','_self')">
+            <img th:src="@{/img/homepage.png}" alt="homepage" />
+            <p>Главная страница</p>
+        </div>
+        <button>Новый комп</button>
+        <span>
+          Show
+          <select name="" id="">
+            <option value="">5</option>
+            <option value="">10</option>
+            <option value="">15</option>
+          </select>
+
+          entities
+        </span>
+
+        <input
+                type="text"
+                id="search"
+                onkeyup=""
+                placeholder="Search for names..."
+                title="Type in a name"
+        />
+    </nav>
+
+    <table>
+        <tr>
+            <th>Код</th>
+            <th>Марка</th>
+            <th>Модель</th>
+            <th>Картинка</th>
+            <th>Цена</th>
+            <th>Операции</th>
+        </tr>
+        <tr th:if="${#lists.isEmpty(computerList)}">
+            <td colspan="6">Пустая таблица</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(computerList)==false}">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</section>
+</body>
+</html>

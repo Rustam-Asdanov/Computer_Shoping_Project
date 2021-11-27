@@ -25,7 +25,7 @@
             <p>Главная страница</p>
         </div>
 
-        <div onclick="window.open('','')" sec:authorize="isAuthenticated()">
+        <div onclick="window.open('/shop_user/computer_page','_self')" sec:authorize="isAuthenticated()">
             <img th:src="@{/img/computer.png}" alt="homepage" />
             <p>Компьютеры</p>
         </div>
