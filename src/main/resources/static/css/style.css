@@ -53,6 +53,7 @@ span {
 #box-one div {
   transition: 600ms all;
   border-radius: 20px;
+
 }
 
 #box-one div:hover {
@@ -60,6 +61,7 @@ span {
   box-shadow: 0 0 10px 3px gold;
   transform: scale(1.2);
   z-index: 1;
+  cursor:pointer;
 }
 
 .hide {

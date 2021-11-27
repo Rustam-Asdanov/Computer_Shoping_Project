@@ -3,6 +3,7 @@ package com.project.full.ComputerShoping.security;
 import com.project.full.ComputerShoping.service.AccountUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,18 +30,21 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
-                .antMatchers("/computer_shopping/user","/computer_shopping/user/*")
+                .antMatchers(HttpMethod.GET,"/","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
+                .antMatchers("/computer_shopping/*")
                     .hasAuthority(COMPUTER_READ.getPermissionInfo())
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/computer_shopping/guest", true)
+                .defaultSuccessUrl("/computer_shopping", true)
                 .and()
                 .logout()
-                .logoutSuccessUrl("/computer_shopping");
+                .logoutSuccessUrl("/computer_shopping")
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
     }
 
     @Override

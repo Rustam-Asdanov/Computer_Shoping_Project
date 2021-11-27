@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,38 +14,38 @@
 <section id="box-one">
         <span>
           <h2>Добро пожаловать в компьютерный магазин Скалетто</h2>
-          <h3 th:if="${isActive}" >Пользователь:
-            <small th:text="${account}"></small>
+          <h3 sec:authorize="isAuthenticated()">Пользователь:
+            <small sec:authentication="name"></small>
           </h3>
           <hr />
         </span>
 
-        <div onclick="">
+        <div onclick="window.open('/computer_shopping','_self')">
             <img th:src="@{/img/homepage.png}" alt="homepage" />
             <p>Главная страница</p>
         </div>
 
-        <div onclick="" th:if="${isActive}">
+        <div onclick="window.open('','')" sec:authorize="isAuthenticated()">
             <img th:src="@{/img/computer.png}" alt="homepage" />
             <p>Компьютеры</p>
         </div>
 
-        <div onclick="" class="">
+        <div onclick="window.open('','')" >
             <img th:src="@{/img/shopping.png}" alt="shopping" />
             <p>Покупка и продажа компьютеров</p>
         </div>
 
-        <div onclick="" th:unless="${isActive}">
+        <div onclick="window.open('/login','_self')" sec:authorize="isAuthenticated()==false">
             <img th:src="@{/img/login.png}" alt="login" />
             <p>Вход</p>
         </div>
 
-        <div onclick="" th:if="${isActive}">
+        <div onclick="window.open('/logout','_self')" sec:authorize="isAuthenticated()">
             <img th:src="@{/img/logout.png}" alt="logout" />
             <p>Выход</p>
         </div>
 
-        <div onclick="" th:unless="${isActive}">
+        <div onclick="window.open('/computer_shopping/registration','_self')" sec:authorize="isAuthenticated()==false">
             <img th:src="@{/img/registration.png}" alt="registration" />
             <p>Новый пользователь</p>
         </div>

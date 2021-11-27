@@ -12,5 +12,8 @@ class LoginController {
         return "login";
     }
 
-
+    @GetMapping
+    public String getPage(){
+        return "forward:/computer_shopping";
+    }
 }
