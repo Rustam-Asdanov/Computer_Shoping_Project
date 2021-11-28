@@ -29,6 +29,20 @@
           cursor:pointer;
         }
 
+        div.message span:nth-child(2) {
+        border-radius: 50%;
+
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        transition: 1000ms all;
+      }
+
+      div.message span:nth-child(2):hover {
+        background-color: rgba(255, 0, 0, 0.342);
+        cursor: pointer;
+      }
+
     </style>
 </head>
 <body>
@@ -40,6 +54,10 @@
     </div>
     <form class="form-signin" method="post" action="/login">
         <h2 class="form-signin-heading">Войти в свой аккаунт</h2>
+        <div class="message" th:if="${isActive}">
+            <span>Аккаунт удачно создан</span>
+            <span onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
         <p>
             <label for="username">Логин</label>
             <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
