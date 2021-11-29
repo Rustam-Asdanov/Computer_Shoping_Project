@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" th:href="@{/new_comp_style.css}">
+</head>
+
+<body>
+<section id="container">
+  <span>назад</span>
+  <h1>Новый Компьютер</h1>
+  <form action="">
+    <label for="input-1">Марка</label
+    ><input id="input-1" type="text" placeholder="input here..." />
+    <label for="input-2">Оперативня память</label
+    ><input id="input-2" type="text" placeholder="input here..." />
+    <label for="input-3">Модель</label
+    ><input id="input-3" type="text" placeholder="input here..." />
+    <label for="input-4">Процессор</label
+    ><input id="input-4" type="text" placeholder="input here..." />
+    <label for="input-5">Цена</label
+    ><input id="input-5" type="text" placeholder="input here..." />
+    <label for="input-6">Память</label
+    ><input id="input-6" type="text" placeholder="input here..." />
+    <label for="input-7">Описание</label
+    ><input id="input-7" type="text" placeholder="input here..." />
+    <label for="input-8">Тип памяти</label
+    ><select name="" id="input-8">
+    <option value="">SSD</option>
+    <option value="">HDD</option>
+  </select>
+    <label for="input-9">Состояние</label
+    ><select name="" id="input-9">
+    <option value="">Новый</option>
+    <option value="">Старый</option>
+  </select>
+    <label for="input-10">Операционная система</label
+    ><input id="input-10" type="text" placeholder="input here..." />
+    <label for="input-11">Фото</label
+    ><input class="custom-file-input" id="input-11" type="file" />
+    <label for="input-12">Видеокарта</label
+    ><input id="input-12" type="text" placeholder="input here..." />
+    <input type="submit" value="Сохранить" onchange="return sendData()" />
+  </form>
+</section>
+</body>
+</html>

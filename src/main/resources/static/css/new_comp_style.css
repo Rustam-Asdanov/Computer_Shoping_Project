@@ -1,0 +1,78 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: coral;
+  }
+
+  #container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background-image: linear-gradient(60deg, #949398ff, #f4df4eff);
+    text-align: center;
+    border-radius: 40px;
+  }
+
+  #container form {
+    position: relative;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 10% 30% 20% 40%;
+    grid-gap: 2%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #container form input,
+  select {
+    height: 60%;
+    text-align: center;
+    border-radius: 20px;
+    width: 240px;
+    border: 2px solid blueviolet;
+    transition: 1000ms box-shadow, 700ms background-color;
+  }
+
+  #container form input[type="submit"] {
+    grid-column: 3/4;
+  }
+
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-file-input::before {
+    content: "Select";
+    padding: 5px 8px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+
+  input[type="file"] {
+    background-color: white;
+    cursor: pointer;
+  }
+
+  form input:hover,
+  select:hover,
+  form input:focus {
+    background-color: crimson;
+    color: white;
+    box-shadow: 0 0 30px 10px crimson;
+  }
+
+  form input:hover::placeholder,
+  form input:focus::placeholder {
+    color: white;
+  }
