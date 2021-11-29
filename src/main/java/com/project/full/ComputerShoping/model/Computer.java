@@ -39,9 +39,14 @@ public class Computer {
     @NotEmpty(message = "invalid capacity")
     private int ROM;
 
+
+    private String ROM_type;
+
+    private String condition;
+
     @NotEmpty(message = "write something")
     @Size(min = 10, message = "at least 10 digits")
-    private String condition;
+    private String description;
 
     @NotEmpty(message = "invalid operating system")
     private String operating_system;
@@ -50,5 +55,5 @@ public class Computer {
     private String video_card;
 
     @NotEmpty(message = "put some photo")
-    private String photo;
+    private String photo_name;
 }
