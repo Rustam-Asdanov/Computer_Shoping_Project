@@ -1,6 +1,7 @@
 package com.project.full.ComputerShoping.controller;
 
 import com.project.full.ComputerShoping.model.Computer;
+import com.project.full.ComputerShoping.service.ComputerDaoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,12 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("/shop_user")
 public class GuestPage {
+
+    private final ComputerDaoService computerDaoService;
+
+    public GuestPage(ComputerDaoService computerDaoService) {
+        this.computerDaoService = computerDaoService;
+    }
 
     @GetMapping("/computer_page")
     public String getComputerPage(Model model){
@@ -36,7 +43,7 @@ public class GuestPage {
             return "new_computer";
         }
 
-
+        computerDaoService.addComputer(computer);
         return "forward:/shop_user/computer_page";
     }
 }
