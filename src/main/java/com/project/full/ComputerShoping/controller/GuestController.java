@@ -10,22 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/shop_user")
-public class GuestPage {
+public class GuestController {
 
     private final ComputerDaoService computerDaoService;
 
-    public GuestPage(ComputerDaoService computerDaoService) {
+    public GuestController(ComputerDaoService computerDaoService) {
         this.computerDaoService = computerDaoService;
     }
 
     @GetMapping("/computer_page")
     public String getComputerPage(Model model){
-        model.addAttribute("computerList",new ArrayList<>());
+        model.addAttribute("computerList",computerDaoService.getComputerList());
         return "computer_page";
     }
 

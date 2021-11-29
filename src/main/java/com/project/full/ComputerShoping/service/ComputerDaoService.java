@@ -2,13 +2,11 @@ package com.project.full.ComputerShoping.service;
 
 import com.project.full.ComputerShoping.model.Computer;
 import com.project.full.ComputerShoping.repository.ComputerRepository;
-import org.hibernate.Session;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -46,10 +44,15 @@ public class ComputerDaoService {
     }
 
     public List<Computer> getComputerList(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return computerRepository.findAll();
     }
 
     public int checkImageName(String originalFilename) {
         return computerRepository.checkImageName(originalFilename);
+    }
+
+    public void deleteComputerById(long id) {
+        computerRepository.deleteById(id);
     }
 }

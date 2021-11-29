@@ -47,15 +47,29 @@
         <tr th:if="${#lists.isEmpty(computerList)}">
             <td colspan="6">Пустая таблица</td>
         </tr>
-        <tr th:if="${#lists.isEmpty(computerList)==false}">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr th:if="${#lists.isEmpty(computerList)==false}" th:each="computer : ${computerList}">
+            <td th:text="${computer.id}">id</td>
+            <td th:text="${computer.brand}">brand</td>
+            <td th:text="${computer.model}">model</td>
+            <td>
+                <img th:src="@{/user_images/king---{photo}(photo=${computer.photo_name})}">
+            </td>
+            <td th:text="${computer.cost}">cost</td>
+            <td>
+                <button>Редактировать</button>
+                <button th:onclick="| deleteComp(`/computer/${computer.id}`) |">Удалить</button>
+            </td>
         </tr>
     </table>
 </section>
+
+<script>
+    function deleteComp(URL){
+    console.log(URL);
+        const req = new XMLHttpRequest();
+        req.open("GET",URL);
+        req.send();
+    }
+</script>
 </body>
 </html>

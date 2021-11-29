@@ -1,9 +1,9 @@
 package com.project.full.ComputerShoping.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -11,13 +11,15 @@ import javax.persistence.*;
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
     private String password;
     private String full_name;
     private String email;
     private String phone_number;
+//    @OneToMany
+//    private List<Computer> computerList;
 
     public Account() {
     }

@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 public class Computer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Size(min = 2,message = "invalid brand name")

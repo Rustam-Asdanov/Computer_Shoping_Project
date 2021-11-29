@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.project.full.ComputerShoping.security.ApplicationPermission.COMPUTER_READ;
 
 @Configuration
@@ -31,8 +33,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
 //                .antMatchers("/shop_user/*","/**","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
-              .antMatchers(HttpMethod.GET,"/","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
-                .antMatchers("/shop_user/*")
+              .antMatchers("/","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
+                .antMatchers("/shop_user/*","/computer/*")
                     .hasAuthority(COMPUTER_READ.getPermissionInfo())
                 .anyRequest()
                 .authenticated()
@@ -41,11 +43,16 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/computer_shopping", true)
                 .and()
+                .rememberMe()
+                .tokenValiditySeconds((int)TimeUnit.SECONDS.toSeconds(21))
+                .key("good")
+                .and()
                 .logout()
                 .logoutSuccessUrl("/computer_shopping")
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
+
     }
 
     @Override
