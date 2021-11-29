@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 public class Computer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Size(min = 2,message = "invalid brand name")
@@ -43,11 +43,11 @@ public class Computer {
     private String ROM_type;
 
     @NotEmpty(message = "select some option")
-    private String condition;
+    private String comp_condition;
 
     @NotEmpty(message = "write something")
     @Size(min = 10, message = "at least 10 digits")
-    private String description;
+    private String comp_description;
 
     @NotEmpty(message = "invalid operating system")
     private String operating_system;

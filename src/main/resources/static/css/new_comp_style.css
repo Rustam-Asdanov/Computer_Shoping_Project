@@ -1,96 +1,111 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    background-color: coral;
-  }
+body {
+  background-color: coral;
+}
 
-  #container {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    background-image: linear-gradient(60deg, #949398ff, #f4df4eff);
-    text-align: center;
-    border-radius: 40px;
-  }
+#container {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  width: 80%;
+  height: 90%;
+  background-image: linear-gradient(60deg, #949398ff, #f4df4eff);
+  text-align: center;
+  border-radius: 40px;
+}
 
-  #container form {
-    position: relative;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    display: grid;
-    grid-template-columns: 10% 30% 20% 40%;
-    grid-gap: 2%;
-    justify-content: center;
-    align-items: center;
-  }
+#container form {
+  position: relative;
+  top: 5%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: 10% 30% 20% 40%;
+  justify-content: center;
+  align-items: center;
+}
 
-  #container form input,
-  select {
-    height: 60%;
-    text-align: center;
-    border-radius: 20px;
-    width: 240px;
-    border: 2px solid blueviolet;
-    transition: 1000ms box-shadow, 700ms background-color;
-  }
+#container form div {
+  height: 30px;
+}
 
-  #container form input[type="submit"] {
-    grid-column: 3/4;
-  }
+#container form input,
+select {
+  height: 80%;
+  text-align: center;
+  border-radius: 20px;
+  width: 240px;
+  border: 2px solid blueviolet;
+  transition: 1000ms box-shadow, 700ms background-color;
+}
 
-  .custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-  }
-  .custom-file-input::before {
-    content: "Select";
-    padding: 5px 8px;
-    cursor: pointer;
-    font-weight: 700;
-  }
-  .custom-file-input:hover::before {
-    border-color: black;
-  }
+#container form input[type="submit"] {
+  grid-column: 3/4;
+  height: 30px;
+}
 
-  input[type="file"] {
-    background-color: white;
-    cursor: pointer;
-  }
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: "Select";
+  padding: 5px 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
 
-  form input:hover,
-  select:hover,
-  form input:focus {
-    background-color: crimson;
-    color: white;
-    box-shadow: 0 0 30px 10px crimson;
-  }
+input[type="file"] {
+  background-color: white;
+  cursor: pointer;
+}
 
-  form input:hover::placeholder,
-  form input:focus::placeholder {
-    color: white;
-  }
+form input:hover,
+select:hover,
+form input:focus,
+form select:focus {
+  background-color: crimson;
+  color: white;
+  box-shadow: 0 0 30px 10px crimson;
+  transform: scale(1.2);
+}
 
-  img {
-    width: 50px;
-    height: 50px;
-  }
-  div.home {
-    transition: 600ms all;
-    border-radius: 20px;
-    text-align:center;
-  }
+form input:hover::placeholder,
+form input:focus::placeholder {
+  color: white;
+}
 
-  div.home:hover {
-    background-color: blueviolet;
-    box-shadow: 0 0 10px 3px gold;
-    transform: scale(1.2);
-    z-index: 1;
-    cursor:pointer;
-  }
+img {
+  width: 50px;
+  height: 50px;
+}
+div.home {
+  transition: 600ms all;
+  border-radius: 20px;
+  text-align: center;
+}
+
+div.home:hover {
+  background-color: blueviolet;
+  box-shadow: 0 0 10px 3px gold;
+  transform: scale(1.2);
+  z-index: 1;
+  cursor: pointer;
+}
+
+form .error {
+  color: blue;
+  width: 50%;
+  margin: 2px auto;
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
