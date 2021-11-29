@@ -24,7 +24,7 @@ public class ComputerDaoService {
         computerRepository.save(computer);
     }
 
-    public void addComputerImage(MultipartFile multipartFile,int pic_num){
+    public String addComputerImage(MultipartFile multipartFile,int pic_num){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String image_name = "";
         image_name += multipartFile.getOriginalFilename().split("\\.")[0];
@@ -41,6 +41,7 @@ public class ComputerDaoService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return image_name;
     }
 
     public List<Computer> getComputerList(){

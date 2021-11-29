@@ -45,8 +45,10 @@ public class GuestController {
             return "new_computer";
         }
         int pic_name_count = computerDaoService.checkImageName(multipartFile.getOriginalFilename());
+
+        String pic_name = computerDaoService.addComputerImage(multipartFile,pic_name_count);
+        computer.setPhoto_name_string(pic_name);
         computerDaoService.addComputer(computer);
-        computerDaoService.addComputerImage(multipartFile,pic_name_count);
         return "redirect:/shop_user/computer_page";
     }
 }

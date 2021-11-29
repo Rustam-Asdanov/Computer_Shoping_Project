@@ -65,4 +65,8 @@ public class Computer {
     public void setPhoto_name(MultipartFile multipartFile) {
         this.photo_name = multipartFile.getOriginalFilename();
     }
+
+    public void setPhoto_name_string(String photo_name) {
+        this.photo_name = photo_name;
+    }
 }
