@@ -2,6 +2,7 @@ package com.project.full.ComputerShoping.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -55,6 +56,13 @@ public class Computer {
     @NotEmpty(message = "invalid video card")
     private String video_card;
 
-    @NotEmpty(message = "put some photo")
     private String photo_name;
+
+    public String getPhoto_name() {
+        return photo_name;
+    }
+
+    public void setPhoto_name(MultipartFile multipartFile) {
+        this.photo_name = multipartFile.getOriginalFilename();
+    }
 }

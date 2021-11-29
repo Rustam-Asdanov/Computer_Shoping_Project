@@ -2,8 +2,15 @@ package com.project.full.ComputerShoping.service;
 
 import com.project.full.ComputerShoping.model.Computer;
 import com.project.full.ComputerShoping.repository.ComputerRepository;
+import org.hibernate.Session;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -19,8 +26,30 @@ public class ComputerDaoService {
         computerRepository.save(computer);
     }
 
+    public void addComputerImage(MultipartFile multipartFile,int pic_num){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String image_name = "";
+        image_name += multipartFile.getOriginalFilename().split("\\.")[0];
+        image_name += "_-_" + ((pic_num==0) ? 1 : pic_num+1);
+        image_name += "." + multipartFile.getOriginalFilename().split("\\.")[1];
+
+        try {
+            multipartFile.transferTo(
+                    new File(
+                            "C:\\Users\\Rustam\\Desktop\\Developia\\" +
+                                    "FINAL PROJECTS\\BACKEND PROJECT\\ComputerShoping\\" +
+                                    "ComputerShoping\\src\\main\\resources\\" +
+                                    "static\\user_images\\"+auth.getName()+"---"+image_name));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Computer> getComputerList(){
         return computerRepository.findAll();
     }
 
+    public int checkImageName(String originalFilename) {
+        return computerRepository.checkImageName(originalFilename);
+    }
 }

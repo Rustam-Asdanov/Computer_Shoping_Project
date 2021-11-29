@@ -30,7 +30,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
+//                .antMatchers("/shop_user/*","/**","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
+              .antMatchers(HttpMethod.GET,"/","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
                 .antMatchers("/shop_user/*")
                     .hasAuthority(COMPUTER_READ.getPermissionInfo())
                 .anyRequest()

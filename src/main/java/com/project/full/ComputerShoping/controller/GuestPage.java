@@ -2,15 +2,15 @@ package com.project.full.ComputerShoping.controller;
 
 import com.project.full.ComputerShoping.model.Computer;
 import com.project.full.ComputerShoping.service.ComputerDaoService;
+import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 
 @Controller
@@ -37,13 +37,17 @@ public class GuestPage {
 
     @PostMapping("/add_computer")
     public String addNewComputer(@ModelAttribute @Valid Computer computer,
-                                 BindingResult bindingResult)
+                                 BindingResult bindingResult,
+                                 @RequestParam("photo_name")MultipartFile multipartFile)
     {
-        if(bindingResult.hasErrors()){
+        System.out.println(multipartFile.getOriginalFilename());
+        if(bindingResult.hasErrors()) {
+            System.out.println("error");
             return "new_computer";
         }
-
+        int pic_name_count = computerDaoService.checkImageName(multipartFile.getOriginalFilename());
         computerDaoService.addComputer(computer);
-        return "forward:/shop_user/computer_page";
+        computerDaoService.addComputerImage(multipartFile,pic_name_count);
+        return "redirect:/shop_user/computer_page";
     }
 }

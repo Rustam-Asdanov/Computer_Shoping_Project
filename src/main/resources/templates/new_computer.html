@@ -15,7 +15,7 @@
     <p>Главная страница</p>
   </div>
   <h1>Новый Компьютер</h1>
-  <form th:action="@{/shop_user/add_computer}" th:method="POST" th:object="${computer}">
+  <form th:action="@{/shop_user/add_computer}" th:method="POST" th:object="${computer}" enctype="multipart/form-data">
 
     <label for="input-1">Марка</label>
     <div>
@@ -62,8 +62,8 @@
     <label for="input-8">Тип памяти</label>
     <div>
       <select name="ROM_type" th:field="*{ROM_type}" id="input-8">
-        <option value="">SSD</option>
-        <option value="">HDD</option>
+        <option value="SSD">SSD</option>
+        <option value="HHD">HDD</option>
       </select>
       <div th:errorclass="error" th:if="${#fields.hasErrors('ROM_type')}" th:errors="*{ROM_type}">message</div>
     </div>
@@ -71,8 +71,8 @@
     <label for="input-9">Состояние</label>
     <div>
       <select name="comp_condition" th:field="*{comp_condition}" id="input-9">
-        <option value="">Новый</option>
-        <option value="">Старый</option>
+        <option value="new">Новый</option>
+        <option value="old">Старый</option>
       </select>
       <div th:errorclass="error" th:if="${#fields.hasErrors('comp_condition')}" th:errors="*{comp_condition}">message</div>
     </div>
@@ -86,7 +86,6 @@
     <label for="input-11">Фото</label>
     <div>
       <input class="custom-file-input" th:field="*{photo_name}" id="input-11" type="file" />
-      <div th:errorclass="error" th:if="${#fields.hasErrors('photo_name')}" th:errors="*{photo_name}">message</div>
     </div>
 
     <label for="input-12">Видеокарта</label>
