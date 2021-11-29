@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <link rel="stylesheet" th:href="@{/new_comp_style.css}">
+  <link rel="stylesheet" th:href="@{/css/new_comp_style.css}">
 </head>
 <body>
 <section id="container">
@@ -18,58 +18,82 @@
   <form th:action="@{/shop_user/add_computer}" th:method="POST" th:object="${computer}">
 
     <label for="input-1">Марка</label>
-    <input id="input-1" th:field="*{brand}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">message</span>
+    <div>
+      <input id="input-1" th:field="*{brand}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">message</div>
+    </div>
 
     <label for="input-2">Оперативня память</label>
-    <input id="input-2" th:field="*{RAM}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('RAM')}" th:errors="*{RAM}">message</span>
+    <div>
+      <input id="input-2" th:field="*{RAM}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('RAM')}" th:errors="*{RAM}">message</div>
+    </div>
 
     <label for="input-3">Модель</label>
-    <input id="input-3" th:field="*{model}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}">message</span>
+    <div>
+      <input id="input-3" th:field="*{model}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('model')}" th:errors="*{model}">message</div>
+    </div>
 
     <label for="input-4">Процессор</label>
-    <input id="input-4" th:field="*{processor}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('processor')}" th:errors="*{processor}">message</span>
+    <div>
+      <input id="input-4" th:field="*{processor}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('processor')}" th:errors="*{processor}">message</div>
+    </div>
 
     <label for="input-5">Цена</label>
-    <input id="input-5" th:field="*{cost}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}">message</span>
+    <div>
+      <input id="input-5" th:field="*{cost}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}">message</div>
+    </div>
 
     <label for="input-6">Память</label>
-    <input id="input-6" th:field="*{ROM}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('ROM')}" th:errors="*{ROM}">message</span>
+    <div>
+      <input id="input-6" th:field="*{ROM}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('ROM')}" th:errors="*{ROM}">message</div>
+    </div>
 
     <label for="input-7" >Описание</label>
-    <input id="input-7" th:field="*{description}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">message</span>
+    <div>
+      <input id="input-7" th:field="*{description}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">message</div>
+    </div>
 
     <label for="input-8">Тип памяти</label>
-    <select name="ROM_type" th:field="*{ROM_type}" id="input-8">
-      <option value="">SSD</option>
-      <option value="">HDD</option>
-    </select>
-    <span th:if="${#fields.hasErrors('ROM_type')}" th:errors="*{ROM_type}">message</span>
+    <div>
+      <select name="ROM_type" th:field="*{ROM_type}" id="input-8">
+        <option value="">SSD</option>
+        <option value="">HDD</option>
+      </select>
+      <div th:if="${#fields.hasErrors('ROM_type')}" th:errors="*{ROM_type}">message</div>
+    </div>
 
     <label for="input-9">Состояние</label>
-    <select name="condition" th:field="*{condition}" id="input-9">
-      <option value="">Новый</option>
-      <option value="">Старый</option>
-    </select>
-    <span th:if="${#fields.hasErrors('condition')}" th:errors="*{condition}">message</span>
+    <div>
+      <select name="condition" th:field="*{condition}" id="input-9">
+        <option value="">Новый</option>
+        <option value="">Старый</option>
+      </select>
+      <div th:if="${#fields.hasErrors('condition')}" th:errors="*{condition}">message</div>
+    </div>
 
     <label for="input-10" >Операционная система</label>
-    <input id="input-10" th:field="*{operating_system}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('operating_system')}" th:errors="*{operating_system}">message</span>
+    <div>
+      <input id="input-10" th:field="*{operating_system}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('operating_system')}" th:errors="*{operating_system}">message</div>
+    </div>
 
     <label for="input-11">Фото</label>
-    <input class="custom-file-input" th:field="*{photo_name}" id="input-11" type="file" />
-    <span th:if="${#fields.hasErrors('photo_name')}" th:errors="*{photo_name}">message</span>
+    <div>
+      <input class="custom-file-input" th:field="*{photo_name}" id="input-11" type="file" />
+      <div th:if="${#fields.hasErrors('photo_name')}" th:errors="*{photo_name}">message</div>
+    </div>
 
     <label for="input-12">Видеокарта</label>
-    <input id="input-12" th:field="*{video_card}" type="text" placeholder="input here..." />
-    <span th:if="${#fields.hasErrors('video_card')}" th:errors="*{video_card}">message</span>
+    <div>
+      <input id="input-12" th:field="*{video_card}" type="text" placeholder="input here..." />
+      <div th:if="${#fields.hasErrors('video_card')}" th:errors="*{video_card}">message</div>
+    </div>
 
     <input type="submit" value="Сохранить"/>
   </form>

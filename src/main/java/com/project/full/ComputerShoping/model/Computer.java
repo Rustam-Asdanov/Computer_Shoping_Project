@@ -9,10 +9,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@Data
-@NoArgsConstructor
+
 @Entity
 @Table
+@Data
+@NoArgsConstructor
 public class Computer {
 
     @Id
@@ -22,7 +23,6 @@ public class Computer {
     @Size(min = 2,message = "invalid brand name")
     private String brand;
 
-    @NotEmpty(message = "invalid capacity")
     @Min(value = 4,message = "at least 4 GB")
     @Max(value = 256,message = "max 256 GB")
     private int RAM;
@@ -33,15 +33,16 @@ public class Computer {
     @NotEmpty(message = "invalid processor")
     private String processor;
 
-    @NotEmpty(message = "invalid cost")
+    @Min(value = 100,message = "at least $100")
     private int cost;
 
-    @NotEmpty(message = "invalid capacity")
+    @Min(value = 256, message = "at least 256 GB")
     private int ROM;
 
-
+    @NotEmpty(message = "select some option")
     private String ROM_type;
 
+    @NotEmpty(message = "select some option")
     private String condition;
 
     @NotEmpty(message = "write something")
