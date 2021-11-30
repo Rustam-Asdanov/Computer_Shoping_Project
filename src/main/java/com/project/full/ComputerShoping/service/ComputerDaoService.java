@@ -28,7 +28,7 @@ public class ComputerDaoService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String image_name = "";
         image_name += multipartFile.getOriginalFilename().split("\\.")[0];
-        image_name += "_-_" + ((pic_num==0) ? 1 : pic_num+1);
+        image_name += "_-_" + (pic_num+1);
         image_name += "." + multipartFile.getOriginalFilename().split("\\.")[1];
 
         try {
@@ -50,7 +50,7 @@ public class ComputerDaoService {
     }
 
     public int checkImageName(String originalFilename) {
-        return computerRepository.checkImageName(originalFilename);
+        return computerRepository.checkImageName(originalFilename.split("\\.")[0]);
     }
 
     public void deleteComputerById(long id) {
