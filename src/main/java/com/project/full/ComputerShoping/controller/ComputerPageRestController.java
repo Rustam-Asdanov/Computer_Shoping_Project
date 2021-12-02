@@ -22,8 +22,9 @@ public class ComputerPageRestController {
         computerDaoService.deleteComputerById(id);
     }
 
-    @GetMapping("/loadNext")
+    @GetMapping("/load")
     public List<Computer> loadComputers(){
-        return null;
+        return computerDaoService.getComputerList();
     }
+
 }

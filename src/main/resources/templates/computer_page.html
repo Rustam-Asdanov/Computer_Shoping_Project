@@ -16,14 +16,13 @@
         </div>
         <button onclick="window.open('/shop_user/new_computer','_self')">Новый комп</button>
         <span>
-          Show
+          Show entities
           <select name="" id="">
             <option value="">5</option>
             <option value="">10</option>
             <option value="">15</option>
           </select>
 
-          entities
         </span>
 
         <input
@@ -56,7 +55,7 @@
             </td>
             <td th:text="${computer.cost}">cost</td>
             <td>
-                <button>Редактировать</button>
+                <button th:onclick="| window.open('/shop_user/update/${computer.id}','_self') |">Редактировать</button>
                 <button th:onclick="| deleteComp(`/computer/${computer.id}`) |">Удалить</button>
             </td>
         </tr>
@@ -70,6 +69,20 @@
         req.open("GET",URL);
         req.send();
     }
+<!--    /*<![CDATA[*/-->
+
+<!--       function getList(){-->
+<!--            const req = new XMLHttpRequest();-->
+
+<!--            req.onload = function(){-->
+<!--                /*[[${computerList}]]*/ = this.responseText;-->
+<!--            }-->
+
+<!--            req.open("GET",URL);-->
+<!--            req.send();-->
+<!--       }-->
+
+<!--    /*]]>*/-->
 </script>
 </body>
 </html>

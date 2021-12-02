@@ -14,6 +14,8 @@ public interface ComputerRepository extends JpaRepository<Computer,Long> {
     @Query("select count(*) from Computer c where c.photo_name LIKE %:name%")
     int checkImageName(@Param("name") String originalFilename);
 
+    Computer getComputerById(long id);
+
 //    @Query("select * from Computer c where c.login=")
 //    List<Computer> getAllByLogin(String name,int count);
 }

@@ -2,7 +2,6 @@ package com.project.full.ComputerShoping.controller;
 
 import com.project.full.ComputerShoping.model.Computer;
 import com.project.full.ComputerShoping.service.ComputerDaoService;
-import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/shop_user")
@@ -50,5 +48,12 @@ public class GuestController {
         computer.setPhoto_name_string(pic_name);
         computerDaoService.addComputer(computer);
         return "redirect:/shop_user/computer_page";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateComputer(@PathVariable("id") long id, Model model){
+        model.addAttribute("computer",computerDaoService.getComputerById(id));
+        model.addAttribute("update",true);
+        return "new_computer";
     }
 }

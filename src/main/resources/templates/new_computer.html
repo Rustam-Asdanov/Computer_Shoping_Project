@@ -93,8 +93,8 @@
       <input id="input-12" th:field="*{video_card}" type="text" placeholder="input here..." />
       <div th:errorclass="error" th:if="${#fields.hasErrors('video_card')}" th:errors="*{video_card}">message</div>
     </div>
-
-    <input type="submit" value="Сохранить"/>
+    <button th:if="${update}">Update</button>
+    <input th:unless="${update}" type="submit" value="Сохранить"/>
   </form>
 </section>
 </body>

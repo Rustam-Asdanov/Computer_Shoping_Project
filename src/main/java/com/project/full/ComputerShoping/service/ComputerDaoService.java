@@ -56,4 +56,8 @@ public class ComputerDaoService {
     public void deleteComputerById(long id) {
         computerRepository.deleteById(id);
     }
+
+    public Computer getComputerById(long id) {
+        return computerRepository.getComputerById(id);
+    }
 }
