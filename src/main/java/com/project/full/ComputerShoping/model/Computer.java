@@ -58,6 +58,10 @@ public class Computer {
 
     private String photo_name;
 
+    @ManyToOne
+    @JoinColumn(name = "the_account_id")
+    private Account theAccount;
+
     public String getPhoto_name() {
         return photo_name;
     }

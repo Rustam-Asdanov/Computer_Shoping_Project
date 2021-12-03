@@ -44,11 +44,6 @@ public class ComputerDaoService {
         return image_name;
     }
 
-    public List<Computer> getComputerList(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return computerRepository.findAll();
-    }
-
     public int checkImageName(String originalFilename) {
         return computerRepository.checkImageName(originalFilename.split("\\.")[0]);
     }
@@ -59,5 +54,13 @@ public class ComputerDaoService {
 
     public Computer getComputerById(long id) {
         return computerRepository.getComputerById(id);
+    }
+
+    public List<Computer> getComputerListByAccountId(long id) {
+        return computerRepository.getComputerByAccountId(id);
+    }
+
+    public List<Computer> getComputerList(long id,int counter) {
+        return computerRepository.getComputerList(id,counter);
     }
 }

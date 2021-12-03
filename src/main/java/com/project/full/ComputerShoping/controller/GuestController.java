@@ -1,6 +1,7 @@
 package com.project.full.ComputerShoping.controller;
 
 import com.project.full.ComputerShoping.model.Computer;
+import com.project.full.ComputerShoping.service.AccountDaoService;
 import com.project.full.ComputerShoping.service.ComputerDaoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +15,19 @@ import javax.validation.Valid;
 @RequestMapping("/shop_user")
 public class GuestController {
 
+    private final AccountDaoService accountDaoService;
     private final ComputerDaoService computerDaoService;
 
-    public GuestController(ComputerDaoService computerDaoService) {
+    public GuestController(AccountDaoService accountDaoService, ComputerDaoService computerDaoService) {
+        this.accountDaoService = accountDaoService;
         this.computerDaoService = computerDaoService;
     }
 
+
     @GetMapping("/computer_page")
     public String getComputerPage(Model model){
-        model.addAttribute("computerList",computerDaoService.getComputerList());
+        long id = accountDaoService.getCurrentUserId();
+        model.addAttribute("computerList",computerDaoService.getComputerListByAccountId(id));
         return "computer_page";
     }
 

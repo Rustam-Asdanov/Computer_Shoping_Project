@@ -18,8 +18,8 @@ public class Account {
     private String full_name;
     private String email;
     private String phone_number;
-//    @OneToMany
-//    private List<Computer> computerList;
+    @OneToMany
+    private List<Computer> computerList;
 
     public Account() {
     }
