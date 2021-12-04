@@ -22,7 +22,6 @@ public class ComputerDaoService {
     }
 
     public void addComputer(Computer computer) {
-
         computerRepository.save(computer);
     }
 

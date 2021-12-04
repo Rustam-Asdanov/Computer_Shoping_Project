@@ -15,7 +15,9 @@
     <p>Главная страница</p>
   </div>
   <h1>Новый Компьютер</h1>
-  <form th:action="@{/shop_user/add_computer}" th:method="POST" th:object="${computer}" enctype="multipart/form-data">
+    <form th:action="@{/shop_user/add_computer}" th:method="POST"
+          th:object="${computer}" enctype="multipart/form-data">
+      <input type="hidden" th:field="*{id}">
 
     <label for="input-1">Марка</label>
     <div>
@@ -85,7 +87,9 @@
 
     <label for="input-11">Фото</label>
     <div>
-      <input class="custom-file-input" th:field="*{photo_name}" id="input-11" type="file" />
+      <input class="custom-file-input" th:field="*{photo_name}" id="input-11" type="file"/>
+      <input type="hidden" name="photo" th:value="${computer.photo_name}">
+      <img th:if="${update}" th:src="@{/user_images/{user}---{photo}(photo=${computer.photo_name},user=${user})}" alt="computer image">
     </div>
 
     <label for="input-12">Видеокарта</label>
@@ -93,9 +97,10 @@
       <input id="input-12" th:field="*{video_card}" type="text" placeholder="input here..." />
       <div th:errorclass="error" th:if="${#fields.hasErrors('video_card')}" th:errors="*{video_card}">message</div>
     </div>
-    <button th:if="${update}">Update</button>
-    <input th:unless="${update}" type="submit" value="Сохранить"/>
+    <input th:if="${update}" type="submit" value="Обновить"/>
+      <input th:unless="${update}" type="submit" value="Сохранить"/>
   </form>
 </section>
+
 </body>
 </html>

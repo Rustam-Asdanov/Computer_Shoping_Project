@@ -29,6 +29,7 @@ public class GuestController {
     public String getComputerPage(Model model){
         long id = accountDaoService.getCurrentUserAccount().getId();
         model.addAttribute("computerList",computerDaoService.getComputerList(id,0));
+        model.addAttribute("user", accountDaoService.getCurrentUserAccount().getUsername());
         return "computer_page";
     }
 
@@ -39,19 +40,26 @@ public class GuestController {
     }
 
     @PostMapping("/add_computer")
-    public String addNewComputer(@ModelAttribute @Valid Computer computer,
+    public String addNewComputer(@ModelAttribute("computer") @Valid Computer computer,
                                  BindingResult bindingResult,
-                                 @RequestParam("photo_name")MultipartFile multipartFile)
+                                 @RequestParam("photo_name")MultipartFile multipartFile,
+                                 @RequestParam("photo") String photo_name_old)
     {
+        System.out.println(photo_name_old);
         System.out.println(multipartFile.getOriginalFilename());
-        if(bindingResult.hasErrors()) {
-            System.out.println("error");
-            return "new_computer";
-        }
-        int pic_name_count = computerDaoService.checkImageName(Objects.requireNonNull(multipartFile.getOriginalFilename()));
 
-        String pic_name = computerDaoService.addComputerImage(multipartFile,pic_name_count);
-        computer.setPhoto_name_string(pic_name);
+        if(bindingResult.hasErrors()) {
+                System.out.println("error");
+                return "new_computer";
+        }
+        if(photo_name_old.isEmpty()) {
+            int pic_name_count = computerDaoService.checkImageName(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+
+            String pic_name = computerDaoService.addComputerImage(multipartFile, pic_name_count);
+            computer.setPhoto_name_string(pic_name);
+        } else {
+            computer.setPhoto_name_string(photo_name_old);
+        }
 
         computer.setTheAccount(accountDaoService.getCurrentUserAccount());
 
@@ -61,7 +69,9 @@ public class GuestController {
 
     @GetMapping("/update/{id}")
     public String updateComputer(@PathVariable("id") long id, Model model){
-        model.addAttribute("computer",computerDaoService.getComputerById(id));
+        Computer computer = computerDaoService.getComputerById(id);
+        model.addAttribute("computer",computer);
+        model.addAttribute("user", accountDaoService.getCurrentUserAccount().getUsername());
         model.addAttribute("update",true);
         return "new_computer";
     }
