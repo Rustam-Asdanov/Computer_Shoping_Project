@@ -56,18 +56,7 @@ class AccountDaoServiceTest {
 
     @Test
     void canGetAccountByUsername() {
-        // given
-        String testName = "test";
-        ArgumentCaptor<String> argumentCaptor =
-                ArgumentCaptor.forClass(String.class);
-        // when
 
-        accountDaoService.getAccountByUsername(testName);
-
-        // then
-        verify(accountRepository).getByUsername(argumentCaptor.capture());
-        String resultText = argumentCaptor.getValue();
-        assertThat(resultText).isEqualTo(testName);
 
     }
 }

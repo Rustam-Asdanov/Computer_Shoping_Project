@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/shop_user")
@@ -26,8 +27,8 @@ public class GuestController {
 
     @GetMapping("/computer_page")
     public String getComputerPage(Model model){
-        long id = accountDaoService.getCurrentUserId();
-        model.addAttribute("computerList",computerDaoService.getComputerListByAccountId(id));
+        long id = accountDaoService.getCurrentUserAccount().getId();
+        model.addAttribute("computerList",computerDaoService.getComputerList(id,0));
         return "computer_page";
     }
 
@@ -47,10 +48,13 @@ public class GuestController {
             System.out.println("error");
             return "new_computer";
         }
-        int pic_name_count = computerDaoService.checkImageName(multipartFile.getOriginalFilename());
+        int pic_name_count = computerDaoService.checkImageName(Objects.requireNonNull(multipartFile.getOriginalFilename()));
 
         String pic_name = computerDaoService.addComputerImage(multipartFile,pic_name_count);
         computer.setPhoto_name_string(pic_name);
+
+        computer.setTheAccount(accountDaoService.getCurrentUserAccount());
+
         computerDaoService.addComputer(computer);
         return "redirect:/shop_user/computer_page";
     }

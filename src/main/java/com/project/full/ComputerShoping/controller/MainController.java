@@ -37,6 +37,4 @@ class MainController {
         return "login";
     }
 
-
-
 }

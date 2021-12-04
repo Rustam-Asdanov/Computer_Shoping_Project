@@ -30,7 +30,7 @@ public class ComputerPageRestController {
     public List<Computer> loadComputers(
             @PathVariable("count") int count){
 
-        long id = accountDaoService.getCurrentUserId();
+        long id = accountDaoService.getCurrentUserAccount().getId();
 
         if(count<0 && count<counter){
             counter -= count;

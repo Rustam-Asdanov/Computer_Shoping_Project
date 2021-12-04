@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ComputerDaoService {
@@ -21,6 +22,7 @@ public class ComputerDaoService {
     }
 
     public void addComputer(Computer computer) {
+
         computerRepository.save(computer);
     }
 
@@ -56,11 +58,17 @@ public class ComputerDaoService {
         return computerRepository.getComputerById(id);
     }
 
-    public List<Computer> getComputerListByAccountId(long id) {
-        return computerRepository.getComputerByAccountId(id);
-    }
 
     public List<Computer> getComputerList(long id,int counter) {
-        return computerRepository.getComputerList(id,counter);
+        List<Computer> listComputers = computerRepository
+                .findAll().stream()
+                .filter(computer -> computer.getTheAccount().getId()==id)
+                .collect(Collectors.toList());
+
+        if(listComputers.size()>5){
+            return listComputers.subList(counter,counter+5);
+        } else {
+            return listComputers;
+        }
     }
 }

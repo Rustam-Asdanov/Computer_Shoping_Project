@@ -24,8 +24,8 @@ public class AccountDaoService {
         return account;
     }
 
-    public long getCurrentUserId() {
+    public Account getCurrentUserAccount() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return accountRepository.findByUsername(auth.getName()).getId();
+        return accountRepository.findByUsername(auth.getName());
     }
 }
