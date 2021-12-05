@@ -45,8 +45,6 @@ public class GuestController {
                                  @RequestParam("photo_name")MultipartFile multipartFile,
                                  @RequestParam("photo") String photo_name_old)
     {
-        System.out.println(photo_name_old);
-        System.out.println(multipartFile.getOriginalFilename());
 
         if(bindingResult.hasErrors()) {
                 System.out.println("error");
