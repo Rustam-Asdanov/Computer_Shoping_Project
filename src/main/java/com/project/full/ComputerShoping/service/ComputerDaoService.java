@@ -70,4 +70,13 @@ public class ComputerDaoService {
             return listComputers;
         }
     }
+
+    public List<Computer> getComputerListForShop(int counter) {
+        List<Computer> computerList = computerRepository.findAll();
+        if(computerList.size()>5){
+            return computerList.subList(counter,counter+5);
+        } else {
+            return computerList;
+        }
+    }
 }

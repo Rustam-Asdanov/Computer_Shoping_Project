@@ -51,7 +51,7 @@
             <td th:text="${computer.brand}">brand</td>
             <td th:text="${computer.model}">model</td>
             <td>
-                <img th:src="@{/user_images/{user}---{photo}(photo=${computer.photo_name},user=${user})}">
+                <img th:src="@{/computer/image/{user}---{photo}(photo=${computer.photo_name},user=${user})}">
 <!--                <img th:onload="| imageLoad(${user},  ${computer.photo_name}) |">-->
             </td>
             <td th:text="${computer.cost}">cost</td>

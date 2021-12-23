@@ -70,8 +70,8 @@
         background-color: red;
       }
 
-      .row{
-        position:absolute;
+      .box{
+        position:relative;
         top:22%;
       }
     </style>
@@ -82,18 +82,18 @@
   <p>Главная страница</p>
 </div>
 
-<div class="container row" th:each="">
+<div class="row box" th:each="computer_info : ${computer_info_list}">
   <div
           class="col-12 col-sm-6 col-md-4 col-lg-3 bg-warning m-2 p-2 container"
   >
-    <img src="" alt="" />
+    <img th:src="@{/user_images/king---${computer_info.photo_name}}" alt="computer photo" />
     <hr />
-    <div>Бренд: <span></span></div>
-    <div>Модель: <span></span></div>
-    <div>Цена: <span></span></div>
-    <div>Продавец: <span></span></div>
-    <div>Телефон: <span></span></div>
-    <button class="btn btn-info btn-outline-success m-4" onclick="">
+    <div>Бренд: <span th:text="${computer_info.brand}"></span></div>
+    <div>Модель: <span th:text="${computer_info.model}"></span></div>
+    <div>Цена: <span th:text="${computer_info.cost}"></span></div>
+    <div>Продавец: <span th:text="${computer_info.theAccount.full_name}"></span></div>
+    <div>Телефон: <span th:text="${computer_info.theAccount.phone_number}"></span></div>
+    <button class="btn btn-info btn-outline-success m-4" onclick="window.open('','')">
       Подробно
     </button>
   </div>
