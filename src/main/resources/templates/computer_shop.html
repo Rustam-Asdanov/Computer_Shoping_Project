@@ -82,9 +82,10 @@
   <p>Главная страница</p>
 </div>
 
-<div class="row box" th:each="computer_info : ${computer_info_list}">
+<div class="row box justify-content-center" >
   <div
-          class="col-12 col-sm-6 col-md-4 col-lg-3 bg-warning m-2 p-2 container"
+          class="col-12 col-sm-5 col-md-3 col-lg-2 bg-warning m-2 p-2 container"
+          th:each="computer_info : ${computer_info_list}"
   >
     <img th:src="@{/user_images/king---${computer_info.photo_name}}" alt="computer photo" />
     <hr />
@@ -93,7 +94,8 @@
     <div>Цена: <span th:text="${computer_info.cost}"></span></div>
     <div>Продавец: <span th:text="${computer_info.theAccount.full_name}"></span></div>
     <div>Телефон: <span th:text="${computer_info.theAccount.phone_number}"></span></div>
-    <button class="btn btn-info btn-outline-success m-4" onclick="window.open('','')">
+    <button class="btn btn-info btn-outline-success m-4"
+            th:onclick="| window.open('/computer/shop/detail/${computer_info.id}','_blank') |">
       Подробно
     </button>
   </div>
