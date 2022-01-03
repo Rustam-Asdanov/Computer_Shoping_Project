@@ -18,20 +18,24 @@
     <title>Bootstrap</title>
     <style>
       body {
+        background-color: red;
         background-image: linear-gradient(45deg, orange, pink, coral, green);
         background-size: cover;
         background-repeat: no-repeat;
-        height: 80vh;
       }
       div {
         width: 80%;
         margin: 10% auto;
       }
+      img{
+        display: block;
+        margin: 10px auto;
+      }
     </style>
 </head>
 <body>
 <div th:object="${comp}">
-    <img src="" th:alt="*{brand}" />
+    <img id="pic" th:alt="*{brand}" />
     <table class="table">
         <tbody class="text-center">
             <tr>
@@ -44,11 +48,11 @@
             </tr>
             <tr>
                 <td>Price</td>
-                <td th:text="*{cost}"></td>
+                <td th:text="*{cost} + '$'"></td>
             </tr>
             <tr>
                 <td>RAM</td>
-                <td th:text="*{RAM}"></td>
+                <td th:text="*{RAM} + 'GB'"></td>
             </tr>
             <tr>
                 <td>CPU</td>
@@ -56,7 +60,7 @@
             </tr>
             <tr>
                 <td>ROM</td>
-                <td th:text="*{ROM}"></td>
+                <td th:text="*{ROM} + 'GB'"></td>
             </tr>
             <tr>
                 <td>Disk type</td>
@@ -77,5 +81,31 @@
         </tbody>
     </table>
 </div>
+<script>
+    function toDataURL(url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+           callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+      };
+      xhr.open('GET', url);
+      xhr.responseType = 'blob';
+      xhr.send();
+    }
+
+    /*<![CDATA[*/
+
+        var pictureName = `[[${comp.photo_name}]]`;
+
+    /*]]>*/
+
+    toDataURL("/computer/rest/image/"+pictureName, function(dataUrl) {
+      console.log('RESULT:', dataUrl)
+      document.getElementById("pic").src = dataUrl;
+    })
+</script>
 </body>
 </html>

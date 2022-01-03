@@ -73,4 +73,11 @@ public class GuestController {
         model.addAttribute("update",true);
         return "new_computer";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteById(@PathVariable("id") long id){
+        System.out.println("delete");
+        computerDaoService.deleteComputerById(id);
+        return "redirect:/shop_user/computer_page";
+    }
 }

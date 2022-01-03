@@ -88,7 +88,7 @@
     <label for="input-11">Фото</label>
     <div>
       <input class="custom-file-input" th:field="*{photo_name}" id="input-11" type="file"/>
-      <input type="hidden" name="photo" th:value="${computer.photo_name}">
+      <input style="display:none" name="photo">
       <img th:if="${update}" th:src="@{/user_images/{user}---{photo}(photo=${computer.photo_name},user=${user})}" alt="computer image">
     </div>
 
@@ -101,6 +101,19 @@
       <input th:unless="${update}" type="submit" value="Сохранить"/>
   </form>
 </section>
+<script>
+  /*<![CDATA[*/
 
+      var update = "[[${update}]]";
+      var compName = "[[${computer.photo_name}]]"
+
+  /*]]>*/
+
+  if(update){
+    document.getElementsByName("photo")[0].value = compName;
+  }
+
+  console.log(update);
+</script>
 </body>
 </html>

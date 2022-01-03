@@ -5,14 +5,15 @@ import com.project.full.ComputerShoping.service.AccountDaoService;
 import com.project.full.ComputerShoping.service.ComputerDaoService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/computer")
+@RequestMapping("/computer/rest")
 public class ComputerPageRestController {
 
     private final ComputerDaoService computerDaoService;
@@ -51,10 +52,23 @@ public class ComputerPageRestController {
     )
     public @ResponseBody byte[] getImage(
             @PathVariable("imageName") String imageName
-    ) throws IOException {
-        System.out.println(imageName);
-        InputStream in = getClass().getResourceAsStream("/static/user_images/" + imageName);
-        return IOUtils.toByteArray(in);
+    ) {
+        try{
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println(imageName);
+            File file = new File("C:\\Users\\Rustam\\Desktop\\" +
+                    "Developia\\FINAL PROJECTS\\BACKEND PROJECT\\" +
+                    "ComputerShoping\\ComputerShoping\\src\\main\\resources\\" +
+                    "static\\user_images\\"+auth.getName() + "---" + imageName);
+            InputStream in = new FileInputStream(file);
+            return IOUtils.toByteArray(in);
+        } catch (FileNotFoundException fex){
+            System.out.println("file not found");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }

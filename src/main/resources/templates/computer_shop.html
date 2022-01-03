@@ -75,6 +75,23 @@
         top:22%;
       }
     </style>
+  <script>
+        let counter = 0;
+        function toDataURL(url, elem) {
+    console.log("eee");
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+           elem.src = reader.result;
+        }
+        reader.readAsDataURL(xhr.response);
+      };
+      xhr.open('GET', url);
+      xhr.responseType = 'blob';
+      xhr.send();
+    }
+    </script>
 </head>
 <body>
 <div class="home" onclick="window.open('/computer_shopping','_self')">
@@ -87,11 +104,21 @@
           class="col-12 col-sm-5 col-md-3 col-lg-2 bg-warning m-2 p-2 container"
           th:each="computer_info : ${computer_info_list}"
   >
-    <img th:src="@{/user_images/king---${computer_info.photo_name}}" alt="computer photo" />
+    <img class="image">
+    <script>
+                    /*<![CDATA[*/
+
+                        var pictureName = `[[${computer_info.photo_name}]]`;
+
+                    /*]]>*/
+                    console.log(pictureName);
+                        toDataURL('/computer/rest/image/'+pictureName,
+                        document.getElementsByClassName('image')[counter++]);
+                    </script>
     <hr />
     <div>Бренд: <span th:text="${computer_info.brand}"></span></div>
     <div>Модель: <span th:text="${computer_info.model}"></span></div>
-    <div>Цена: <span th:text="${computer_info.cost}"></span></div>
+    <div>Цена: <span th:text="${computer_info.cost} + '$'"></span></div>
     <div>Продавец: <span th:text="${computer_info.theAccount.full_name}"></span></div>
     <div>Телефон: <span th:text="${computer_info.theAccount.phone_number}"></span></div>
     <button class="btn btn-info btn-outline-success m-4"

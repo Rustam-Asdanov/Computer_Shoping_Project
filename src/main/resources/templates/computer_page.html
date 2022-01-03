@@ -6,6 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link th:href="@{/css/comp_style.css}" rel="stylesheet">
+    <script>
+        let counter = 0;
+        function toDataURL(url, elem) {
+    console.log("eee");
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+           elem.src = reader.result;
+        }
+        reader.readAsDataURL(xhr.response);
+      };
+      xhr.open('GET', url);
+      xhr.responseType = 'blob';
+      xhr.send();
+    }
+
+    function deleteComp(URL){
+    console.log(URL);
+        const req = new XMLHttpRequest();
+        req.open("GET",URL);
+        req.send();
+        location.reload();
+    }
+    </script>
 </head>
 <body>
 <section id="container">
@@ -51,44 +76,44 @@
             <td th:text="${computer.brand}">brand</td>
             <td th:text="${computer.model}">model</td>
             <td>
-                <img th:src="@{/computer/image/{user}---{photo}(photo=${computer.photo_name},user=${user})}">
-<!--                <img th:onload="| imageLoad(${user},  ${computer.photo_name}) |">-->
+                <img class="image">
+                    <script>
+                    /*<![CDATA[*/
+
+                        var pictureName = `[[${computer.photo_name}]]`;
+
+                    /*]]>*/
+                    console.log(pictureName);
+                        toDataURL('/computer/rest/image/'+pictureName,
+                        document.getElementsByClassName('image')[counter++]);
+                    </script>
             </td>
             <td th:text="${computer.cost}">cost</td>
             <td>
                 <button th:onclick="| window.open('/shop_user/update/${computer.id}','_self') |">Редактировать</button>
-                <button th:onclick="| deleteComp(`/computer/${computer.id}`) |">Удалить</button>
+                <button th:onclick="| window.open('/shop_user/delete/${computer.id}','_self') |">Удалить</button>
             </td>
         </tr>
     </table>
 </section>
 
-<script>
-    function deleteComp(URL){
-    console.log(URL);
-        const req = new XMLHttpRequest();
-        req.open("GET",URL);
-        req.send();
-    }
 
-    function imageLoad(userName, imageName, image){
-        image.src="/user_images/userName---imageName";
-    }
 
-<!--    /*<![CDATA[*/-->
-
-<!--       function getList(){-->
-<!--            const req = new XMLHttpRequest();-->
-
-<!--            req.onload = function(){-->
-<!--                /*[[${computerList}]]*/ = this.responseText;-->
-<!--            }-->
-
-<!--            req.open("GET",URL);-->
-<!--            req.send();-->
-<!--       }-->
-
-<!--    /*]]>*/-->
-</script>
+<!--<script>-->
+<!--    function toDataURL(url, elem) {-->
+<!--    console.log("eee");-->
+<!--      var xhr = new XMLHttpRequest();-->
+<!--      xhr.onload = function() {-->
+<!--        var reader = new FileReader();-->
+<!--        reader.onloadend = function() {-->
+<!--           elem.src = reader.result;-->
+<!--        }-->
+<!--        reader.readAsDataURL(xhr.response);-->
+<!--      };-->
+<!--      xhr.open('GET', url);-->
+<!--      xhr.responseType = 'blob';-->
+<!--      xhr.send();-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

@@ -19,7 +19,7 @@ public class ComputerShopController {
     public String getPage(Model model){
         model.addAttribute("computer_info_list",
                 computerDaoService.getComputerListForShop(0));
-        return "/computer_shop";
+        return "computer_shop";
     }
 
     @GetMapping("/detail/{id}")
@@ -30,4 +30,6 @@ public class ComputerShopController {
         model.addAttribute("comp",computerDaoService.getComputerById(id));
         return "computer_detail";
     }
+
+
 }
