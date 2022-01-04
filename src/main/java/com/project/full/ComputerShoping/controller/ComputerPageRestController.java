@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.nio.channels.FileChannel;
 import java.util.List;
 
 @RestController
@@ -60,6 +61,32 @@ public class ComputerPageRestController {
                     "Developia\\FINAL PROJECTS\\BACKEND PROJECT\\" +
                     "ComputerShoping\\ComputerShoping\\src\\main\\resources\\" +
                     "static\\user_images\\"+auth.getName() + "---" + imageName);
+
+            InputStream in = new FileInputStream(file);
+            return IOUtils.toByteArray(in);
+        } catch (FileNotFoundException fex){
+            System.out.println("file not found");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @GetMapping(
+            value = "/image_for_everyone/{userPicture}",
+            produces = MediaType.IMAGE_JPEG_VALUE
+    )
+    public @ResponseBody byte[] getImageForEveryone(
+            @PathVariable("userPicture") String userPicture
+    ) {
+        try{
+            System.out.println(userPicture);
+            File file = new File("C:\\Users\\Rustam\\Desktop\\" +
+                    "Developia\\FINAL PROJECTS\\BACKEND PROJECT\\" +
+                    "ComputerShoping\\ComputerShoping\\src\\main\\resources\\" +
+                    "static\\user_images\\" + userPicture);
+
             InputStream in = new FileInputStream(file);
             return IOUtils.toByteArray(in);
         } catch (FileNotFoundException fex){
@@ -72,3 +99,4 @@ public class ComputerPageRestController {
     }
 
 }
+

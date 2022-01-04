@@ -9,7 +9,6 @@
     <script>
         let counter = 0;
         function toDataURL(url, elem) {
-    console.log("eee");
       var xhr = new XMLHttpRequest();
       xhr.onload = function() {
         var reader = new FileReader();
@@ -77,7 +76,7 @@
             <td th:text="${computer.model}">model</td>
             <td>
                 <img class="image">
-                    <script>
+                <script>
                     /*<![CDATA[*/
 
                         var pictureName = `[[${computer.photo_name}]]`;
@@ -96,24 +95,5 @@
         </tr>
     </table>
 </section>
-
-
-
-<!--<script>-->
-<!--    function toDataURL(url, elem) {-->
-<!--    console.log("eee");-->
-<!--      var xhr = new XMLHttpRequest();-->
-<!--      xhr.onload = function() {-->
-<!--        var reader = new FileReader();-->
-<!--        reader.onloadend = function() {-->
-<!--           elem.src = reader.result;-->
-<!--        }-->
-<!--        reader.readAsDataURL(xhr.response);-->
-<!--      };-->
-<!--      xhr.open('GET', url);-->
-<!--      xhr.responseType = 'blob';-->
-<!--      xhr.send();-->
-<!--    }-->
-<!--</script>-->
 </body>
 </html>

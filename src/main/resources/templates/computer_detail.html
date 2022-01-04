@@ -98,14 +98,17 @@
 
     /*<![CDATA[*/
 
-        var pictureName = `[[${comp.photo_name}]]`;
+         var picture = `[[${comp.photo_name}]]`;
+                        var user = `[[${comp.theAccount.username}]]`;
+                        var userPicture = user + "---" + picture;
 
     /*]]>*/
 
-    toDataURL("/computer/rest/image/"+pictureName, function(dataUrl) {
+    toDataURL('/computer/rest/image_for_everyone/'+userPicture, function(dataUrl) {
       console.log('RESULT:', dataUrl)
       document.getElementById("pic").src = dataUrl;
     })
+
 </script>
 </body>
 </html>

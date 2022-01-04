@@ -105,14 +105,18 @@
           th:each="computer_info : ${computer_info_list}"
   >
     <img class="image">
+
     <script>
                     /*<![CDATA[*/
 
-                        var pictureName = `[[${computer_info.photo_name}]]`;
+                        var picture = `[[${computer_info.photo_name}]]`;
+                        var user = `[[${computer_info.theAccount.username}]]`;
+                        var userPicture = user + "---" + picture;
+
 
                     /*]]>*/
-                    console.log(pictureName);
-                        toDataURL('/computer/rest/image/'+pictureName,
+                    console.log(userPicture);
+                        toDataURL('/computer/rest/image_for_everyone/'+userPicture,
                         document.getElementsByClassName('image')[counter++]);
                     </script>
     <hr />

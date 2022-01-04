@@ -32,10 +32,10 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-//                .antMatchers("/shop_user/*","/**","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*").permitAll()
                 .antMatchers("/shop_user/*")
                 .hasAuthority(COMPUTER_READ.getPermissionInfo())
-                .antMatchers("/","/computer/**","C:/**","/computer/rest/image/*","/computer_shopping","/computer_shopping/*","/img/*","/css/*","/script/*","/user_images/**").permitAll()
+                .antMatchers("/","/computer/**","/computer/rest/image/*","/computer_shopping",
+                        "/computer_shopping/*","/img/*","/css/*","/script/*","/user_images/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
